@@ -1,0 +1,6 @@
+@EliteShirts.API_HostAddress = http://localhost:5082
+
+GET {{EliteShirts.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
