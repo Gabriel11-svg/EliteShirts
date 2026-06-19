@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using EliteShirts.API.Data;
 using EliteShirts.API.Models;
+using EliteShirts.API.Services;
 
 namespace EliteShirts.API.Controllers
 {
@@ -9,43 +8,40 @@ namespace EliteShirts.API.Controllers
     [ApiController]
     public class ProductosController : ControllerBase
     {
-        private readonly AppDbContext _context;
+        private readonly ProductoService _service;
 
-        public ProductosController(AppDbContext context)
+        public ProductosController(ProductoService service)
         {
-            _context = context;
+            _service = service;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Producto>>> GetProductos()
         {
-            return await _context.Productos.ToListAsync();
+            return Ok(await _service.GetProductos());
         }
-        [HttpPost]
-        public async Task<ActionResult<Producto>> CrearProducto(Producto producto)
-        {
-            _context.Productos.Add(producto);
-            await _context.SaveChangesAsync();
 
-            return CreatedAtAction(
-                nameof(GetProductos),
-                new { id = producto.Id },
-                producto);
-        }
         [HttpGet("{id}")]
         public async Task<ActionResult<Producto>> GetProducto(int id)
         {
-            var producto = await _context.Productos.FindAsync(id);
+            var producto = await _service.GetProducto(id);
 
             if (producto == null)
             {
                 return NotFound();
             }
 
-            return producto;
-
-
+            return Ok(producto);
         }
+
+        [HttpPost]
+        public async Task<ActionResult> CrearProducto(Producto producto)
+        {
+            await _service.CrearProducto(producto);
+
+            return Ok("Producto creado correctamente");
+        }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> ActualizarProducto(int id, Producto producto)
         {
@@ -54,26 +50,17 @@ namespace EliteShirts.API.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(producto).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
+            await _service.ActualizarProducto(producto);
 
             return NoContent();
         }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> EliminarProducto(int id)
         {
-            var producto = await _context.Productos.FindAsync(id);
-
-            if (producto == null)
-            {
-                return NotFound();
-            }
-
-            _context.Productos.Remove(producto);
-            await _context.SaveChangesAsync();
+            await _service.EliminarProducto(id);
 
             return NoContent();
         }
-
     }
 }

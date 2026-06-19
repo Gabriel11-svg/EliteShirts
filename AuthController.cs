@@ -1,6 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using EliteShirts.API.Data;
 using EliteShirts.API.Models;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace EliteShirts.API.Controllers
 {
@@ -9,10 +13,14 @@ namespace EliteShirts.API.Controllers
     public class AuthController : ControllerBase
     {
         private readonly AppDbContext _context;
+        private readonly IConfiguration _configuration;
 
-        public AuthController(AppDbContext context)
+        public AuthController(
+            AppDbContext context,
+            IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
         [HttpPost("login")]
@@ -27,9 +35,31 @@ namespace EliteShirts.API.Controllers
                 return Unauthorized("Credenciales incorrectas");
             }
 
+            var tokenHandler = new JwtSecurityTokenHandler();
+
+            var key = Encoding.UTF8.GetBytes(
+                _configuration["Jwt:Key"]!);
+
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new[]
+                {
+                    new Claim(ClaimTypes.Name, user.Email)
+                }),
+
+                Expires = DateTime.UtcNow.AddHours(2),
+
+                SigningCredentials =
+                    new SigningCredentials(
+                        new SymmetricSecurityKey(key),
+                        SecurityAlgorithms.HmacSha256Signature)
+            };
+
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+
             return Ok(new
             {
-                mensaje = "Login exitoso"
+                token = tokenHandler.WriteToken(token)
             });
         }
     }

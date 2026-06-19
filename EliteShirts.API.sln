@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35707.178 d17.12
+VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EliteShirts.API", "EliteShirts.API.csproj", "{15D89048-167C-48BF-A8B4-564AF630D9F7}"
 EndProject
@@ -27,10 +27,26 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{6BA51C82-F
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repositories", "Repositories", "{92A6C819-2621-4E76-8A51-19102739B9D9}"
+	ProjectSection(SolutionItems) = preProject
+		ProductoRepository.cs = ProductoRepository.cs
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{DD0B70EC-D6E9-436F-82FE-AF2A2CA8AF36}"
+	ProjectSection(SolutionItems) = preProject
+		ProductoService.cs = ProductoService.cs
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DTOs", "DTOs", "{DCCB02F2-8439-4DA8-AD0E-038139D77D95}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementos de la solución", "Elementos de la solución", "{AEF528C1-E5EC-45EC-BF7D-A0475D752A92}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interfaces", "Interfaces", "{E13FD45B-B5F4-4178-8CE6-14C848CA2D86}"
+	ProjectSection(SolutionItems) = preProject
+		IProductoRepository.cs = IProductoRepository.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
