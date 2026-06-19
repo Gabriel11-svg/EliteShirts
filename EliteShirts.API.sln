@@ -41,12 +41,15 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementos de la solución", "Elementos de la solución", "{AEF528C1-E5EC-45EC-BF7D-A0475D752A92}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interfaces", "Interfaces", "{E13FD45B-B5F4-4178-8CE6-14C848CA2D86}"
 	ProjectSection(SolutionItems) = preProject
 		IProductoRepository.cs = IProductoRepository.cs
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EliteShirts.Tests", "..\EliteShirts.Tests\EliteShirts.Tests.csproj", "{13D9C457-AEE5-4D00-AB28-099B123DC360}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,6 +61,10 @@ Global
 		{15D89048-167C-48BF-A8B4-564AF630D9F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15D89048-167C-48BF-A8B4-564AF630D9F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15D89048-167C-48BF-A8B4-564AF630D9F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13D9C457-AEE5-4D00-AB28-099B123DC360}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13D9C457-AEE5-4D00-AB28-099B123DC360}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13D9C457-AEE5-4D00-AB28-099B123DC360}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13D9C457-AEE5-4D00-AB28-099B123DC360}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
